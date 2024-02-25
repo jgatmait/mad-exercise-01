@@ -12,14 +12,83 @@
 <span style="color:blue">Provide your answer here! </span>
 > Note: you can also use code snippets to illustrate your answer. 
 
+Nullable types are variables that can hold null, 
+while non-nullable types are variables which can't hold null.
+
 ```kotlin 
-// example code snippet
-val a: String = "value" // non-null type
+// Example of non-null types
+var a: String = "value" 
+var b: Int = 10
+var c: Char = "a"
+var d: Any = 10
+```
+To declare nullable variables, we need a ? operator to the ennd of the type
+```kotlin 
+// Example of null types
+var aa: String? = "value" 
+var bb: Int? = 10
+var cc: Char? = "a"
+var dd: Any? = 10
+```
+To access methods or properties of nullable variables, we need to use ?. safe call operators or !!. not-null assertion operators.
+```kotlin 
+var aa: String? = "value"
+aa = null
+val l = aa?.length
+
+var bb: Int? = 10
+var cc: Int = 8
+val m = bb!!.minus(cc)
+
+```
+We can use if/else statements with null checks to access nullable variables in non-nullable contexts
+
+```kotlin 
+//Basic Null Check
+val name: String? = "Janella"
+
+if (name != null) {
+    println(name)  
+} else {
+    println("Name is null")
+}
+
+//
+```
+
+You can convert a nullable variable to a non-nullable type with if/else expressios.
+
+```kotlin 
+val nullableName: String? = getNullableName() // This function might return null
+
+// Convert nullableName into a non-nullable type
+val name: String = if (nullableName != null) nullableName else "Unknown"
+
+println(name) // 'name' is guaranteed to be non-null here
+
+//Another Exampls
+val userInput: String? = readLine()
+
+// Ensuring a non-nullable assignment with a default value
+val validInput: String = if (!userInput.isNullOrBlank()) userInput!! else "Default Input"
+
+println(validInput) // 'validInput' is now a non-nullable String
+```
+
+You can provide a default value for when a nullable variable is null with the if7else expression or the ?: Elvis operator.
+
+```kotlin 
+val nullableName: String? = getNullableName() // This function might return null
+
+// Using the Elvis operator to provide a default value
+val name: String = nullableName ?: "Unknown"
+
 ```
 
 ### What are lambda expressions and higher order functions in Kotlin? Why would you store a function inside a variable? (0,5 points)
 
 <span style="color:blue">Provide your answer here!</span>
+
 
 ### Provide a solution for the following number guessing game inside `App.kt`. (3 points)
 
