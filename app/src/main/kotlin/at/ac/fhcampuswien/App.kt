@@ -86,24 +86,32 @@ class App {
 
         val inputString = input.toString()
         val generatedString = generatedNumber.toString()
+        val countedDigits = mutableSetOf<Char>() // Tracks digits from generatedNumber that have been counted
 
         if (inputString.length != generatedString.length) {
             throw IllegalArgumentException("Input and generated number must have the same number of digits.")
         }
+        // Check for non-repeating digits within each number
+        /** Error in AppTest
+          if (inputString.toSet().size != inputString.length || generatedString.toSet().size != generatedString.length) {
+            throw IllegalArgumentException("Both numbers must have non-repeating digits.")
+        }**/
+
         var correctDigits = 0
         var correctPositions = 0
 
-        // Check for non-repeating digits within each number
-        if (inputString.toSet().size != inputString.length || generatedString.toSet().size != generatedString.length) {
-            throw IllegalArgumentException("Both numbers must have non-repeating digits.")
-        }
+
+
 
         inputString.forEachIndexed { index, char ->
-            if (generatedString.contains(char)) {
+            // Check if the digit has not been counted yet and if it exists in the generatedNumber
+            if (char !in countedDigits && generatedString.contains(char)) {
                 correctDigits++
-                if (generatedString[index] == char) {
-                    correctPositions++
-                }
+                countedDigits.add(char) // Mark the digit as counted
+            }
+            // Check for correct positions
+            if (generatedString[index] == char) {
+                correctPositions++
             }
         }
 
