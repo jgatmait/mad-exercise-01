@@ -88,7 +88,43 @@ val name: String = nullableName ?: "Unknown"
 ### What are lambda expressions and higher order functions in Kotlin? Why would you store a function inside a variable? (0,5 points)
 
 <span style="color:blue">Provide your answer here!</span>
+Lambda Expression
+Lambda expression is an anonymous function; a function without a nname. They are passed immediately as an expression without declaration, ig
+Here, a lambda expression is assigned to variable hello. The expression doesn't accept any parameters and doesn't return any value in this program.
+```kotlin
+val hello = { println("Hello!")}
+// invoking function
+hello()
+```
+The code snippet below has a lambda expression that accepts two integers as parameters, and returns the product of those two integers.
+Here, the lambda expression is enclosed in the curly braces.
+```kotlin
+val product = { a: Int, b: Int -> a * b }
+val result = product(9, 3)
+println(result)
+```
 
+Higher-Order Function
+In Kotlin you can pass functions as arguments to other functions. Also, you can return a function from other functions. These functions are called higher-order functions.
+
+Passing a Lambda exoression to a higher-order function
+Here, greetMe() is a higher-order function (because it takes function as a parameter). The hello parameter accepts the lambda passed to the greetMe() function as: hello: () -> Unit
+The empty parenthesis suggest that, the passed anonymous function doesn't accept any parameters. And, the Unit keyword suggest that the anonymous function doesn't return any value.
+```kotlin
+fun greetMe(hello: () -> Unit) {
+    hello()
+}
+
+fun main(args: Array<String>) {
+    greetMe({ println("Hello!") })
+}
+```
+
+Why Store a Function in a Variable?
+1. Higher-Order Functions
+2. Reusability
+3. Simplification
+4. Functional Programming Patterns
 
 ### Provide a solution for the following number guessing game inside `App.kt`. (3 points)
 
